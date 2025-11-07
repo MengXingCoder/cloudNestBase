@@ -2,9 +2,14 @@ import { Module } from '@nestjs/common';
 import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import * as dotenv from 'dotenv'
+import Configuration from './configuration';
+import * as Joi from 'joi'
+
+
 //环境配置文件抽离出来，如果设置了NODE_ENV 就取NODE_ENV 否则取development
 const envFilePath = `.env.${process.env.NODE_ENV || `development`}`
-import Configuration from './configuration';
+
+
 
 //安装 cross-env的包
 //然后在package.json中修改启动方式
@@ -19,7 +24,10 @@ import Configuration from './configuration';
         // envFilePath,
         // //load 是需要一个函数，包含着键值对，
         // load: [() => dotenv.config({ path: ".env" })]
-        load: [Configuration]
+        load: [Configuration],
+        validationSchema: Joi.object({
+
+        })
     })
     ],
     controllers: [],
