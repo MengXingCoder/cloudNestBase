@@ -9,9 +9,9 @@ export class UserController {
     ) { }
     @Get()
     test() {
-        const db = this.ConfigService.get(ConfigEnum.DB)
-        const DB_URL = this.ConfigService.get('DB_URL')
-        console.log('db', db, DB_URL)
+        // const db = this.ConfigService.get(ConfigEnum.DB)
+        const DB = this.ConfigService.get('db')
+        console.log('db', DB)
         return this.ConfigService.get('DB') //获取配置文件的值
         // return this.userService.gethe()
     }

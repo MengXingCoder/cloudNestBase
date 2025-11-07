@@ -1,0 +1,5 @@
+db:
+  mysql1:   
+    name: prod1   
+  mysql2:  
+    name: prod2
