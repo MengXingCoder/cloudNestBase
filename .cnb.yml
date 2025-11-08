@@ -11,7 +11,10 @@ devcontainer:
     - 5173   # Vue Vite Dev Server
     - 8080   # Adminer / 其他工具
     - 80     # 如果你有 Nginx 或静态服务
-
+    - 8081
+    - 8082
+    - 8083
+    - 8084
   # VS Code 插件（按需添加）
   extensions:
     - ms-vscode.vscode-typescript-next
@@ -33,8 +36,8 @@ devcontainer:
     - docker-compose --version
 
     # 配置 Git（替换成你自己的信息！）
-    - git config --global user.name "YourRealName"
-    - git config --global user.email "your@email.com"
+    - git config --global user.name "MengXingCoder"
+    - git config --global user.email "917660267@qq.com"
 
     # 可选：自动安装依赖（如果你项目根目录有 package.json）
     # - npm install
