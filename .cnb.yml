@@ -1,43 +1,16 @@
-
 # .cnb.yml
-version: "1"
-devcontainer:
-  # 使用带 Docker 的官方 Node 镜像（推荐）
-  image: mcr.microsoft.com/devcontainers/typescript-node:18-bullseye
-
-  # 开放你需要的端口（根据你的项目调整）
-  ports:
-    - 3000   # NestJS / 后端 API
-    - 5173   # Vue Vite Dev Server
-    - 8080   # Adminer / 其他工具
-    - 80     # 如果你有 Nginx 或静态服务
-    - 8081
-    - 8082
-    - 8083
-    - 8084
-  # VS Code 插件（按需添加）
-  extensions:
-    - ms-vscode.vscode-typescript-next
-    - bradlc.vscode-tailwindcss
-    - ms-azuretools.vscode-docker
-    - eamodio.gitlens
-
-  # 启动容器时自动执行的命令
-  commands:
-    # 安装 nvm（Node 版本管理器）
-    - curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-    - echo 'export NVM_DIR="$HOME/.nvm"' >> ~/.bashrc
-    - echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc
-    - source ~/.bashrc && nvm install 18 && nvm use 18 && npm --version
-
-    # 安装 docker-compose（镜像已有 docker，但无 compose）
-    - sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-    - sudo chmod +x /usr/local/bin/docker-compose
-    - docker-compose --version
-
-    # 配置 Git（替换成你自己的信息！）
-    - git config --global user.name "MengXingCoder"
-    - git config --global user.email "917660267@qq.com"
-
-    # 可选：自动安装依赖（如果你项目根目录有 package.json）
-    # - npm install
+$:
+  vscode:
+    - docker:
+        build: Dockerfile
+        # 可选择是否同时定义 build 和 image
+        # 此时会优先使用 .ide/Dockerfile 构建镜像
+        # 如果 .ide/Dockerfile 构建失败，则使用 image 指定的镜像保证环境能启动成功
+        # image: cnbcool/default-dev-env:latest
+      services:
+        - vscode
+        - docker
+      # 开发环境启动后会执行的任务
+      stages:
+        - name: ls
+          script: ls -al
