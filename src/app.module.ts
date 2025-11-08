@@ -21,12 +21,15 @@ const envFilePath = `.env.${process.env.NODE_ENV || `development`}`
     //isGlobal: true  全局启用这个配置文件  
     imports: [UserModule, ConfigModule.forRoot({
         isGlobal: true,
-        // envFilePath,
+        envFilePath,
         // //load 是需要一个函数，包含着键值对，
-        // load: [() => dotenv.config({ path: ".env" })]
-        load: [Configuration],
+        load: [() => dotenv.config({ path: ".env" })],
+        // load: [Configuration],
         validationSchema: Joi.object({
-
+            NODE_ENV: Joi.string().valid('development', 'production').default('default'),
+            DB_PORT: Joi.number().default(3306),
+            DB_URL: Joi.string().domain(),
+            DB_HOST: Joi.string().ip()
         })
     })
     ],
