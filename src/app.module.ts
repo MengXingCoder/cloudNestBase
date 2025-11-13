@@ -6,6 +6,10 @@ import Configuration from './configuration';
 import * as Joi from 'joi'
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigEnum } from './enum/config_enum';
+import { User } from './user/user.entity';
+import { Profile } from './user/profile.entity';
+import { Logs } from './logs/logs.entity';
+import { Roles } from './roles/roles.entity';
 
 
 //环境配置文件抽离出来，如果设置了NODE_ENV 就取NODE_ENV 否则取development
@@ -22,7 +26,7 @@ const envFilePath = `.env.${process.env.NODE_ENV || `development`}`
     imports: [UserModule, ConfigModule.forRoot({
         isGlobal: true,
         envFilePath,
-        // //load 是需要一个函数，包含着键值对，
+        // //load 是需要一个函数,包含着键值对，
         load: [() => dotenv.config({ path: ".env" })],
         // load: [Configuration],
         validationSchema: Joi.object({
@@ -48,7 +52,7 @@ const envFilePath = `.env.${process.env.NODE_ENV || `development`}`
                 password: ConfigService.get(ConfigEnum.DB_PASSWORD),
                 database: ConfigService.get(ConfigEnum.DB_DATABASE),
                 synchronize: ConfigService.get(ConfigEnum.DB_SYNC),
-                entities: [],
+                entities: [User, Profile, Logs, Roles],
                 logging: ['error']
             } as TypeOrmModuleOptions)
 
