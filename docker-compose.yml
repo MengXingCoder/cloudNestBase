@@ -7,8 +7,8 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
-    # ports:
-    #   - "3306:3306"  # 可选：如果你需要从本地连接数据库
+    ports:
+      - "3306:3306"  # 可选：如果你需要从本地连接数据库
 
   adminer:
     image: adminer

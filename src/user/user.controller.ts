@@ -7,12 +7,14 @@ export class UserController {
     constructor(private readonly userService: UserService,
         private ConfigService: ConfigService
     ) { }
-    @Get()
+
+
     test() {
         // const db = this.ConfigService.get(ConfigEnum.DB)
-        const DB = this.ConfigService.get('db')
-        console.log('db', DB)
-        return this.ConfigService.get('DB') //获取配置文件的值
-        // return this.userService.gethe()
+        // // const DB = this.ConfigService.get('db')
+        // console.log('db', db) 
+        // return this.ConfigService.get('') //获取配置文件的值
+        return ''
+
     }
 }

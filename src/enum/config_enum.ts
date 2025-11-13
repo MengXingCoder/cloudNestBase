@@ -1,5 +1,10 @@
 export enum ConfigEnum {
     //使用枚举和配置文件来进行配置
-    DB = "DB",
-    DB_HOST = "DB_HOST"
+    DB_TYPE = "DB_TYPE",
+    DB_HOST = "DB_HOST",
+    DB_USERNAME = "DB_USERNAME",
+    DB_PASSWORD = "DB_PASSWORD",
+    DB_DATABASE = "DB_DATABASE",
+    DB_PORT = "DB_PORT",
+    DB_SYNC = "DB_SYNC"
 }
