@@ -1,0 +1,5 @@
+npm i -D typeorm-model-generator  先安装
+
+然后在package.json 中新增一个启动命令 以及输出结果到 ./src/entities
+"generator:models":"typeorm-model-generator -h 127.0.0.1 -p 3306 -d testdb -u root -x example -e mysql -o ./src/entities"
+然后就可以看到 通过orm映射的表实体
