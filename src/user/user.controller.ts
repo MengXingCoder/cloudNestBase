@@ -24,5 +24,17 @@ export class UserController {
         return this.userService.create(user)
     }
 
+    @Get('/profile')
+    getProfileInfo() {
+        return this.userService.findProfile(2)
+    }
+    @Get('/logs')
+    findLogs1() {
+        return this.userService.findLogs(2)
+    }
+    @Get('/roles')
+    findroles1() {
+        return this.userService.findroles(2)
+    }
 
 }
