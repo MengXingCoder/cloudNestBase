@@ -1,13 +1,17 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Logger, Post } from '@nestjs/common';
 import { UserService } from './user.service'
 import { ConfigService } from '@nestjs/config';
 import { ConfigEnum } from 'src/enum/config_enum';
 import { User } from 'src/entities/entities/User';
 @Controller('user')
 export class UserController {
+    //使用nestjs内置的日志logger
+    private logger = new Logger(UserController.name, { timestamp: true })
     constructor(private readonly userService: UserService,
         private ConfigService: ConfigService
-    ) { }
+    ) {
+        this.logger.log('UserController', UserController)
+    }
 
     @Get()
     findAll() { //查询所有用户
@@ -15,6 +19,7 @@ export class UserController {
         // // const DB = this.ConfigService.get('db')
         // console.log('db', db) 
         // return this.ConfigService.get('') //获取配置文件的值
+        this.logger.log('UserController', UserController)
         return this.userService.findAllUser()
     }
 

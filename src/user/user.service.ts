@@ -23,8 +23,8 @@ export class UserService {
         return await this.userRepository.findOne({ where: { username } })
     }
     async findid(id: number) {
-        const res23 = await this.userRepository.findOne({ where: { id } })
-        console.log('23', res23)
+        const res = await this.userRepository.findOne({ where: { id } })
+        console.log('findid res', res)
         return await this.userRepository.findOne({ where: { id } })
     }
     async create(user: User) {
@@ -40,8 +40,8 @@ export class UserService {
 
     //多表查询 查询 user表和profile 表直接的关联数据
     async findProfile(id: number) {
-        const res = await this.userRepository.findOne({ where: { id }, relations: { profile: true } })
-        return res
+        return await this.userRepository.findOne({ where: { id }, relations: { profile: true } })
+
     }
     //查询 user 表和logs表的数据
     async findLogs(id: number) {
@@ -50,7 +50,7 @@ export class UserService {
 
     }
     async findroles(id: number) {
-        const res = await this.rolesRepositorty.findOne({ where: { id }, relations: ['users'] })
-        return res
+        return await this.rolesRepositorty.findOne({ where: { id }, relations: ['users'] })
+
     }
 }
