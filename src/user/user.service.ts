@@ -1,4 +1,4 @@
-import { Get, Injectable } from '@nestjs/common';
+import { Get, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
@@ -7,6 +7,7 @@ import { Roles } from 'src/roles/roles.entity';
 
 @Injectable()
 export class UserService {
+    private readonly logger = new Logger(UserService.name);
     constructor(@InjectRepository(User) private readonly userRepository: Repository<User>,
         @InjectRepository(Logs) private readonly logsRepository: Repository<Logs>,
         @InjectRepository(Roles) private readonly rolesRepositorty: Repository<Roles>
@@ -14,6 +15,9 @@ export class UserService {
 
     //查找所有用户
     async findAllUser() {
+        this.logger.log('This is a log message');
+        this.logger.warn('This is a warning');
+        this.logger.error('This is an error');
         const res = await this.userRepository.find()
         console.log('res', res)
         return res

@@ -1,4 +1,4 @@
-import { Controller, Get, Logger, Post } from '@nestjs/common';
+import { Controller, Get, Inject, Logger, LoggerService, Post } from '@nestjs/common';
 import { UserService } from './user.service'
 import { ConfigService } from '@nestjs/config';
 import { ConfigEnum } from 'src/enum/config_enum';
@@ -8,9 +8,9 @@ export class UserController {
     //使用nestjs内置的日志logger
     private logger = new Logger(UserController.name, { timestamp: true })
     constructor(private readonly userService: UserService,
-        private ConfigService: ConfigService
+        private ConfigService: ConfigService,
     ) {
-        this.logger.log('UserController', UserController)
+        // this.logger.log('UserController', UserController)
     }
 
     @Get()
