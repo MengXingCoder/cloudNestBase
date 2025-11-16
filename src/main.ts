@@ -10,6 +10,7 @@ import { WinstonModule } from 'nest-winston';
 import * as winston from 'winston'
 import { utilities as nestWinstonModuleUtilities } from 'nest-winston';
 import 'winston-daily-rotate-file'
+import { HttpExceptionFilter } from './filters/http-exception.filter';
 async function bootstrap() {
     // const logger = new Logger()
     const instance = createLogger({
@@ -46,7 +47,7 @@ async function bootstrap() {
         // logger: false,//关闭了整个nestjs的日志,默认情况是开启的
         // logger: ['error', 'warn']
     })
-    // console.log('Max memory:', v8.getHeapStatistics().heap_size_limit / 1024 / 1024, 'MB');
+    app.useGlobalFilters(new HttpExceptionFilter())
     await app.listen(3000, '0.0.0.0');
     // logger.log('logger level is log')
     // logger.warn('logger level is warn')
