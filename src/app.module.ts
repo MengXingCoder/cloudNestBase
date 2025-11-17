@@ -10,6 +10,7 @@ import { User } from './user/user.entity';
 import { Profile } from './user/profile.entity';
 import { Logs } from './logs/logs.entity';
 import { Roles } from './roles/roles.entity';
+import { LogsModule } from './logs/logs.module';
 
 
 //环境配置文件抽离出来，如果设置了NODE_ENV 就取NODE_ENV 否则取development
@@ -57,16 +58,9 @@ const envFilePath = `.env.${process.env.NODE_ENV || `development`}`
                 logging: ['error']
             } as TypeOrmModuleOptions)
 
-        })
-        // TypeOrmModule.forRoot({
-        //     type: 'mysql',
-        //     host: '127.0.0.1',
-        //     port: 3306,
-        //     username: 'root',
-        //     password: 'example',
-        //     database: 'testdb',
-        //     logging: ['error']
-        // })
+        }),
+        LogsModule
+
     ],
     controllers: [],
     providers: [Logger],

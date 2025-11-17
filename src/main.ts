@@ -40,14 +40,15 @@ async function bootstrap() {
             // other transports...
         ],
     });
+    const logger = WinstonModule.createLogger({
+        instance,
+    })
     const app = await NestFactory.create(AppModule, {
-        logger: WinstonModule.createLogger({
-            instance,
-        }),
+        logger
         // logger: false,//关闭了整个nestjs的日志,默认情况是开启的
         // logger: ['error', 'warn']
     })
-    app.useGlobalFilters(new HttpExceptionFilter())
+    app.useGlobalFilters(new HttpExceptionFilter(logger))
     await app.listen(3000, '0.0.0.0');
     // logger.log('logger level is log')
     // logger.warn('logger level is warn')
